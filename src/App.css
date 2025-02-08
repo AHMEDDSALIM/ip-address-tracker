@@ -65,4 +65,7 @@ h1 {
   .vl {
     border-top: 1px solid #9a9a9a;
   }
+  .leaflet-control-container {
+    display: none;
+  }
 }
