@@ -4,7 +4,8 @@ import classes from "./input.module.css";
 function Input(props) {
   const inputIp = useRef();
   return (
-    <form className={classes.input_container} onSubmit={() => {
+    <form className={classes.input_container} onSubmit={(event) => {
+      event.preventDefault();
       props.updateIp(inputIp.current.value);
     }}>
       <input
