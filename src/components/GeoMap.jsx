@@ -4,15 +4,15 @@ import iconlocation from "../assets/icon-location.svg";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 const customIcon = L.icon({
-  iconUrl: iconlocation, // Replace with the path to your custom icon
-  iconSize: [25, 41], // Size of the icon
-  iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
-  popupAnchor: [1, -34], // Point from which the popup should open relative to the iconAnchor
-  shadowSize: [41, 41], // Optional: size of the shadow
-  shadowAnchor: [12, 41], // Optional: point of the shadow which will correspond to marker's location
+  iconUrl: iconlocation,
+  iconSize: [30, 35], 
+  iconAnchor: [12, 41], 
+  popupAnchor: [1, -34], 
+  shadowSize: [41, 41], 
+  shadowAnchor: [12, 41], 
 });
 function GeoMap(props) {
-  const loc = props.info.loc.split(",").map(Number);
+  const loc = props.info != null ? props.info.loc.split(",").map(Number) : [0, 0];
 
   function ChangeView({ center }) {
     const map = useMap();
@@ -24,12 +24,13 @@ function GeoMap(props) {
 
   return (
     <MapContainer center={loc} zoom={8} scrollWheelZoom={false}>
-      <ChangeView center={loc} />
+      {props.info && <ChangeView center={loc} />}
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={loc} icon={customIcon}></Marker>
+
+      {props.info && <Marker position={loc} icon={customIcon}></Marker>}
     </MapContainer>
   );
 }

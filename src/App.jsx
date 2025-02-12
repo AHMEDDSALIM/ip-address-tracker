@@ -39,14 +39,10 @@ function App() {
     <>
       <div className="background-image">
         <h1>IP Address Tracker</h1>
-        {ipInfo != null ? (
-          <Input defValue={ipInfo.ip} updateIp={handleUpdateIp} />
-        ) : (
-          <></>
-        )}
+        <Input defValue={ipInfo} updateIp={handleUpdateIp} />
       </div>
-      {ipInfo != null ? <Details info={ipInfo} /> : <></>}
-      {ipInfo != null ? <GeoMap info={ipInfo} /> : <></>}
+      <Details info={ipInfo} />
+      <GeoMap info={ipInfo} />
     </>
   );
 }

@@ -4,24 +4,24 @@ import classes from "./input.module.css";
 function Input(props) {
   const inputIp = useRef();
   return (
-    <div className={classes.input_container}>
+    <form className={classes.input_container} onSubmit={() => {
+      props.updateIp(inputIp.current.value);
+    }}>
       <input
         ref={inputIp}
         type="text"
         name="ip"
         id="ip"
-        defaultValue={props.defValue}
+        defaultValue={props.defValue ? props.defValue.ip : ""}
         className={classes.ip_input}
-        placeholder="Search for any IP address or domain"
+        placeholder="Search for any IP address"
+        pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"
+        title="Please enter a valid IP address"
       />
-      <button
-        onClick={() => {
-          props.updateIp(inputIp.current.value);
-        }}
-      >
+      <button type="submit">
         <img src={arrow} alt="arrow" />
       </button>
-    </div>
+    </form>
   );
 }
 
